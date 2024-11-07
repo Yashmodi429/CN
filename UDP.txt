@@ -209,3 +209,95 @@ cd locaton
 python server.py
 
 */
+
+
+
+
+
+
+
+
+
+
+other
+
+●	Programs:
+a.	Socket Programming TCP
+Server
+
+
+
+import socket
+s = socket.socket()
+
+print("Socket successfully created")
+
+port = 12345
+s.bind(('',port))
+print("Socket binded to port %s" %(port))
+print(f"Socket binded to port {port}")
+
+s.listen(5)
+
+while True:
+    c,addr = s.accept()
+    print(f"Got connection from {addr}")
+    c.send('Thank you for connecting\n'.encode())
+    break
+
+c.close()
+
+Client
+import socket
+
+s=socket.socket()
+port = 12345
+
+s.connect(('localhost',port))
+
+print(s.recv(1024).decode())
+
+s.close()
+
+b.	Socket Programming UDP
+Server
+import socket
+
+server_socket=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+print('UDP Server Created')
+
+port = 12345
+
+server_socket.bind(('',port))
+print(f'Socket binded to port {port}')
+
+try:
+    while True:
+        print('Waiting for connection')
+        data, addr = server_socket.recvfrom(1024)
+        print(f'Message Recieved: {data.decode()}from {addr}')
+
+        message = 'Thank you for connecting'
+        server_socket.sendto(message.encode(),addr)
+
+finally:
+    server_socket.close()
+
+Client
+import socket
+
+client_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+server_address = ('localhost',12345)
+
+try:
+    message = "Hello Server!\n"
+    client_socket.sendto(message.encode(),server_address)
+    print(f"Sent Message: {message}")
+
+    data,_= client_socket.recvfrom(1024)
+    print(f"Recieved from server: {data.decode()}")
+
+finally:
+    client_socket.close()
+
+
