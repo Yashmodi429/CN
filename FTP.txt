@@ -21,3 +21,9 @@ Id pass daalo
 ls    >show list
 put filename   >give file
 get filename   >take file
+
+
+gcc filename.c -o test
+./test
+
+python3 filename.py
