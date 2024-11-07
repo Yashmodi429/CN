@@ -48,3 +48,7 @@ sudo apt install ns2 nam -y
 nano simulation.tcl
 ns simulation.tcl
 nam out.nam
+
+
+
+nmap -h
